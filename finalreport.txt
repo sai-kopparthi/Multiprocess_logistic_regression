@@ -1,0 +1,34 @@
+﻿Name : Sai Kopparthi
+Student ID : 915623695
+
+1> In this question I am basically splitting my Xtest, Ytest dataset into 4 equal parts where each array is having 250 records.
+
+Then I used the queue method to parallelize the go_nn method where each process is having testing data of 250 records i.e., 4*250. Where for each process the training data would be same and the testing data is the split data applied to the go_nn function and store each individual results in an output queue. Once all the results are from the queue is placed in the “result” array. I am taking the average of all the results I am getting to get the accuracy. I am starting my timer before staring my processes running and stoping it once it takes the average all the results.
+
+I am getting the following results after multiprocessing
+
+0.794
+('Time %lf secs.\n', 42.88501501083374)
+
+For single-process, I am getting this following result
+
+Accuracy 0.794000 Time 162.448348 secs.
+
+
+2>For this question I had updated my logistic gradient descent algorithm from my previous submission because I am getting the error “@”multiplication. So which made me change my whole code with np.dot(). I am even attaching that file to my submission.
+
+Basically, I am parallelizing a matrix multiplication in gradient finding function i.e.,”deltaa” function in my case. Here I parallelized -QtransposeM multiplication where Q transpose had 122 records or row I split it into 5 parts with 1 to 4 part each with each 25 records and 5 th part of 22 records and the applied for each process I passed each split to the perform the parallel multiplication with M i.e.,”C” in my case. And store the result in the results array which is a result of applying the stack of all the results And then to cross-check my multiprocessing is giving the correct result I subtracted this result vector with the result I get without parallelizing the multiplication. I timed out only training phase because I did parallelization in training phase, not in the testing phase.
+
+These are results I got for 100 iterations of training
+
+For multiprocessing
+
+please wait till the training is done
+('Time %lf secs.\n', 95.51497793197632)
+75.3
+
+For single process
+
+please wait till the training is done
+('Time %lf secs.\n', 88.12598204612732)
+75.3
